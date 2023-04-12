@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Traffic Light</title>
+	<style>
+		.center{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+		button {
+        
+		width: 100px;
+        height: 100px;
+        border-radius: 50%;
+		border: none;
+        margin-block-end: 10px;
+		}
+
+		#red {
+			background-color: red;
+		}
+
+		#green {
+			background-color: green;
+		}
+
+        #yellow {
+			background-color: yellow;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div class="center">
+		<button id="red" onclick="transition('red')" style="color: white;">Red</button>
+		<button id="green" onclick="transition('green')" style="color: white;">Green</button>
+        <button id="yellow" onclick="transition('yellow')" style="color: white;">Yellow</button>
+	</div>
+	<script>
+		// Initialize the state machine
+		let state = 'red';
+		let timerId;
+
+		// Define the state transition function
+		function transition(newState) {
+			// Clear the timer for the current state
+			clearTimeout(timerId);
+
+			// Update the state
+			state = newState;
+
+			// Update the UI
+			document.getElementById('red').style.backgroundColor = 'black';
+			document.getElementById('yellow').style.backgroundColor = 'black';
+			document.getElementById('green').style.backgroundColor = 'black';
+			document.getElementById(newState).style.backgroundColor = newState;
+
+			// Start the timer for the new state
+			switch(newState) {
+        
+				case 'red':
+					timerId = setTimeout(() => transition('green'), 19000);
+					break;
+				case 'yellow':
+					timerId = setTimeout(() => transition('red'), 4700);
+					break;
+				case 'green':
+					timerId = setTimeout(() => transition('yellow'), 14500);
+					break;
+			}
+		}
+
+		// Start the timer for the initial state
+		    document.getElementById('red').style.backgroundColor = 'red';
+			document.getElementById('yellow').style.backgroundColor = 'black';
+			document.getElementById('green').style.backgroundColor = 'black';
+
+		timerId = setTimeout(() => transition('red'), );
+	</script>
+</body>
+</html>
+
